@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Javascript</title>
+<style type="text/css">
+	body{
+		background-color: #A0522D;
+	}
+	h1{
+		text-align: center;
+		color : #D3D3D3;
+	}
+	h2{
+		text-align: center;
+	}
+	div{
+		text-align: center;
+		font-size: 20px;
+	}
+	input.b{
+		text-align: center;
+		width : 10%;
+		margin-left: 45%;
+		margin-right: 45%;
+	}
+</style>
+</head>
+<body>
+
+<h1>Joe's Hotdog Stand</h1>
+<h2>Place Your Order Here: </h2>
+<script language="javascript">
+
+	var prices = new Array();
+	prices[0] = {prop1: "Hotdogs", prop2: 3.25};
+	prices[1] = {prop1: "French Fries", prop2: 2.00};
+	prices[2] = {prop1: "Drinks", prop2: 1.50};
+
+	function calculate(dogs, fries, drinks){
+		var inputs = new Array();
+		inputs[0] = {prop1: "Hot dogs", prop2: dogs};
+		inputs[1] = {prop1: "French Fries", prop2: fries};
+		inputs[2] = {prop1: "Drinks", prop2: drinks};
+		document.write("<style type='text/css'>body{ background-color: #A0522D;}h1{text-align: center;color : #D3D3D3;}h2{text-align: center;}div{text-align: center;font-size: 20px; font-style : bold;}input.b{text-align: center;width : 10%;margin-left: 45%;margin-right: 45%;}</style>");
+		document.write("<h1>Your Order</h1>")
+		for (i =0; i < inputs.length; i++) {
+			document.write("<div>" + inputs[i].prop1 + " ordered: " + inputs[i].prop2 + "<br /> </div>");
+		}
+		var totalcost = 0;
+		for (var i = 0; i < inputs.length; i++) {
+			totalcost += inputs[i].prop2 * prices[i].prop2;
+		}
+		document.write("<br /> <div>Subtotal: $" + totalcost + "<br /> </div>");
+		if (totalcost > 20){
+			totalcost = totalcost * 0.9;
+			document.write("<br /> <div>Discount: 10% <br /> <div>");
+		}
+		tax = totalcost * .0625;
+		document.write("<br /> <div>Tax: $" + tax.toFixed(2) + "<br /> </div>");
+		totalcost = totalcost + tax;
+		document.write("<br /> <div>Total Cost: $" + (totalcost.toFixed(2)) + "<br /> </div>");
+
+	}
+</script>
+<form>
+	<div class="col1">How many Hot dogs?</div>
+	<div class="col2"><input type="text" name="hd" id="hd"></div>
+	<div class="col1">How many French Fries Orders?</div>
+	<div class="col2"><input type="text" name="ff" id="ff"></div>
+	<div class="col1">How many Drinks?</div>
+	<div class="col2"><input type="text" name="dr" id="dr"></div>
+
+	<input class="b" type="submit" onclick="calculate(document.getElementById('hd').value, document.getElementById('ff').value, document.getElementById('dr').value)" name="Calculate" id="Calculate">
+</form>
+</body>
+</html>

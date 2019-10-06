@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Javascript</title>
+<style type="text/css">
+	body{
+		background-color: #A0522D;
+	}
+	h1{
+		text-align: center;
+		color : #00FF00;
+	}
+	h2{
+		text-align: center;
+	}
+	div{
+		text-align: center;
+		font-size: 20px;
+	}
+	input.b{
+		text-align: center;
+		width : 10%;
+		margin-left: 45%;
+		margin-right: 45%;
+	}
+</style>
+</head>
+<body>
+
+<h1>Lucky for Life</h1>
+<h2>The Winning Numbers: </h2>
+<script language="javascript">
+	var num1 = parseInt(Math.random() * 48 + 1);
+	var num2 = parseInt(Math.random() * 48 + 1);
+	var num3 = parseInt(Math.random() * 48 + 1);
+	var num4 = parseInt(Math.random() * 48 + 1);
+	var num5 = parseInt(Math.random() * 48 + 1);
+	var numL = parseInt(Math.random() * 18 + 1);
+	var nums = [num1, num2, num3, num4, num5, numL];
+	for (i = 0; i < 6;  i++){
+		if (i == 5)
+			document.write("<div>Lucky Ball number is: " + nums[i] + "<br /></div>");
+		else
+			document.write("<div>Ball number " + (i + 1) + " is: " + nums[i] + "<br /></div>");
+	}
+	numsS = nums.sort((a, b) => a - b);
+	document.write("<br /><br />")
+	var isL = 0;
+	for (i = 0; i < 6;  i++){
+		if (numsS[i] == numL && isL == 0){
+			document.write("<div>Lucky Ball number is: " + numsS[i] + "<br /></div>");
+			isL = 1;
+		}
+		else
+			document.write("<div>Sorted Ball number " + (i + 1) + " is: " + numsS[i] + "<br /></div>");
+	}
+	document.write("<br />");
+
+	function payout(a, b){
+		a = a.split(" ");
+  		var dups = 0;
+	    for (var i = 0; i < a.length; i++) {
+	        for (var j = 0; j < nums.length; j++) {
+	            if (a[i] == nums[j]) {
+	                dups++;
+	            }
+	        }
+	    }
+
+
+		if (b == numL){
+			if(dups == 5)
+				alert("Congrats! You won $7000 a week FOR LIFE!");
+			else if (dups == 4)
+				alert("Congrats! You won $5000!");
+			else if (dups == 3)
+				alert("Congrats! You won $150!");
+			else if (dups == 2)
+				alert("Congrats! You won $25!");
+			else if (dups == 1)
+				alert("Congrats! You won $6!");
+			else if (dups == 0)
+				alert("Congrats! You won $4!");
+			else
+				alert("You did not win this time. Better luck next time!");
+
+		}
+		else{
+
+			if(dups == 5)
+				alert("Congrats! You won $25,000 a year FOR LIFE!");
+			else if (dups == 4)
+				alert("Congrats! You won $200!");
+			else if (dups == 3)
+				alert("Congrats! You won $20!");
+			else if (dups == 2)
+				alert("Congrats! You won $3!");
+			else
+				alert("You did not win this time. Better luck next time!");
+
+		}
+	}
+</script>
+<h2>Enter your Numbers Here!</h2>
+<form>
+	<div class="col1">5 Lottery Numbers (Seperated by Spaces)</div>
+	<div class="col2"><input type="text" name="5ball[]" id="5ball" placeholder="5 numbers"></div>
+	<div class="col1">Lucky Ball Number</div>
+	<div class="col2"><input type="text" name="Lball" id="Lball" placeholder="LuckyBall number"></div>
+	<input class = "b" type="submit" onclick="payout(document.getElementById('5ball').value, document.getElementById('Lball').value)" name="Get Payout" value="Get Payout">
+</form>
+</body>
+</html>
